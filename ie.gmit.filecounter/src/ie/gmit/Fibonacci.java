@@ -37,4 +37,9 @@ public class Fibonacci {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String add(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
