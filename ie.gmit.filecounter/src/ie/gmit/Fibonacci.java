@@ -16,6 +16,8 @@ public class Fibonacci {
 		
 		System.out.println("Enter the terms for Fibonacci Series: ");
 		
+		System.out.println("y");
+		
 		int numberOfTerms = scanner.nextInt();
 		
 		System.out.println(first + " , " + second);
