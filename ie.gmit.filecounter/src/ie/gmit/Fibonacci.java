@@ -1,8 +1,12 @@
 package ie.gmit;
 
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
-public class Fibonacci {
+import sun.rmi.server.UnicastServerRef;
+
+
+public class Fibonacci extends UnicastServerRef implements RemoteFibonacci{
 
 	public static void main(String[] args)
 	{
@@ -15,8 +19,6 @@ public class Fibonacci {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Enter the terms for Fibonacci Series: ");
-		
-		System.out.println("y");
 		
 		int numberOfTerms = scanner.nextInt();
 		
@@ -39,6 +41,12 @@ public class Fibonacci {
 	}
 
 	public String add(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String setFibonacciSequence(int max) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

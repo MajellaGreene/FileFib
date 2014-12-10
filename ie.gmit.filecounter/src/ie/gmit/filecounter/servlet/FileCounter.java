@@ -35,16 +35,16 @@ public class FileCounter extends HttpServlet {
     // Set the session valid for 5 secs
     String rType = req.getParameter("Request-Type");
     if(rType.equals("Add")){
-    	String jobNumber = "";
-    	jobNumber += fs.add(Integer.parseInt(req.getParameter("max")));
-    	response.getOutputStream().print(jobNumber);
+    	String jobNum = "";
+    	jobNum += fs.add(Integer.parseInt(req.getParameter("max")));
+    	response.getOutputStream().print(jobNum);
     }
     else if(rType.equals("Poll")){
-    	String jobNumber = "";
-    	response.getOutputStream().print(jobNumber);
-    	jobNumber += fs.add(Integer.parseInt(req.getParameter("jobNumber")));
+    	String jobNum = "";
+    	response.getOutputStream().print(jobNum);
+    	jobNum += fs.add(Integer.parseInt(req.getParameter("jobNum")));
     	
-    	if(fs.getResult(Integer.parseInt(jobNumber)) != null)
+    	if(fs.getResult(Integer.parseInt(jobNum)) != null)
     	{
     		//send to client
     	}
@@ -67,6 +67,14 @@ public class FileCounter extends HttpServlet {
 
   
   @Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+		throws ServletException, IOException {
+	// TODO Auto-generated method stub
+	doGet(req, resp);
+}
+
+
+@Override
   public void init() throws ServletException {
     dao = new FileMaj();
     try {

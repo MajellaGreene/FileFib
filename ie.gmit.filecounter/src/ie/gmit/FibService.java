@@ -14,10 +14,10 @@ public class FibService {
 		int number =  (int) Math.random();
 		return number;
 	}
-	public String getResult(int jobNumber){
+	public String getResult(int jobNumb){
 		
-		if(outqueue.containsKey(jobNumber)){
-			String result = outqueue.get(jobNumber);
+		if(outqueue.containsKey(jobNumb)){
+			String result = outqueue.get(jobNumb);
 			return result;
 		}
 		else{
