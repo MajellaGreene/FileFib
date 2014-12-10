@@ -1,7 +1,7 @@
 package ie.gmit;
 
 import java.util.Scanner;
-//m
+
 public class Fibonacci {
 
 	public static void main(String[] args)

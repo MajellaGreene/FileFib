@@ -21,6 +21,7 @@ public class HelloWorld extends HttpServlet {
 		    		"</head> \n" + "<body> \n" + "<font size=\"12px\" color=\"" 
 		    		+ color + "\">" + "Hello World" + "</font> \n" + "</body> \n" 
 		    		+ "</html>" );
+
 		   
 		}
 }
