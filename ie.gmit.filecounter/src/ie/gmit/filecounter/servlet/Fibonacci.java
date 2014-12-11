@@ -1,4 +1,4 @@
-package ie.gmit;
+package ie.gmit.filecounter.servlet;
 
 import java.rmi.RemoteException;
 import java.util.Scanner;

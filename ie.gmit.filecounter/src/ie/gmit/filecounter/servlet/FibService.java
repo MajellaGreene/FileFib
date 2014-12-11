@@ -1,8 +1,10 @@
-package ie.gmit;
+package ie.gmit.filecounter.servlet;
 
 import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
 
 public class FibService {
 	
@@ -12,8 +14,16 @@ public class FibService {
 	public int add(int max) {
 		//Generate random number
 		int number =  (int) Math.random();
+		inqueue.add(new FibRequest(number, max));
+		System.out.println("getting service add method");
 		return number;
 	}
+	
+	public void addResult(FibRequest f, String results)
+	{
+		this.outqueue.put(f.getJobNum(), results);
+	}
+	
 	public String getResult(int jobNumb){
 		
 		if(outqueue.containsKey(jobNumb)){
