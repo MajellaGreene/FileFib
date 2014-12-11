@@ -82,8 +82,6 @@ public class FileCounter extends HttpServlet {
 	  
 	  
     
-	  
-    // HttpSession session = req.getSession(true);
     // Set the session valid for 5 secs
     String rType = req.getParameter("request-type").toString();
     if(rType.equals("Add")){
