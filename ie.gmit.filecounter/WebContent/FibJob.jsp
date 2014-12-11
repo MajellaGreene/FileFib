@@ -7,10 +7,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title> Fibonacci Request   </title>
 	</head>	
+
+<meta http-equiv="refresh" content="10">
+	
 	<body>	<form action="FileCounter">				
 			 <input type="Hidden" name="request-type" value="Poll">
-			  <label> Job Number - <%request.getAttribute("jobNumb");%></label><br>
+			  <label> Job Number - ${ jobNum } </label><br>
 			  <label> Timer - <%request.getAttribute("time");%></label><br>
-			  <label> Page will refresh in 10 seconds </label>		
+			  <label> Page will refresh in 10 seconds </label>	
+			  </form>		
 	</body>	
 </html>

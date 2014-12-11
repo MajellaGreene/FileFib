@@ -11,7 +11,7 @@
 		<form action="FileCounter" method="get">			
 			 Fibonacci Sequence Length ---
 			 <input type="Hidden" name="request-type" value="Add">
-			 Enter Number between 1 - 100 : <br>
+			 <br>Enter Number between 1 - 100 : <br>
 			<input type="text" name="jobNum" size="20px">
 			<input type="submit" value="submit">						
 		</form>		

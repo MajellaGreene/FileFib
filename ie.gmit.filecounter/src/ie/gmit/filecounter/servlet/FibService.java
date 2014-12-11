@@ -13,7 +13,7 @@ public class FibService {
 	
 	public int add(int max) {
 		//Generate random number
-		int number =  (int) Math.random();
+		int number =  (int) ((Math.random() * 99) + 1);
 		inqueue.add(new FibRequest(number, max));
 		System.out.println("getting service add method");
 		return number;

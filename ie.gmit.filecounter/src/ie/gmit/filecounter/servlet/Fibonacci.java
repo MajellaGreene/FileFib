@@ -1,12 +1,24 @@
 package ie.gmit.filecounter.servlet;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 import sun.rmi.server.UnicastServerRef;
 
 
-public class Fibonacci extends UnicastServerRef implements RemoteFibonacci{
+public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected Fibonacci(int portNumb) throws RemoteException {
+		super(portNumb);
+		
+		// TODO Auto-generated constructor stub
+	}
 
 	public static void main(String[] args)
 	{
