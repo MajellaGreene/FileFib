@@ -19,9 +19,9 @@ public class FibService {
 		return number;
 	}
 	
-	public void addResult(FibRequest f, String results)
+	public void addResult(int jobNum, String results)
 	{
-		this.outqueue.put(f.getJobNum(), results);
+		this.outqueue.put(jobNum, results);
 	}
 	
 	public String getResult(int jobNumb){

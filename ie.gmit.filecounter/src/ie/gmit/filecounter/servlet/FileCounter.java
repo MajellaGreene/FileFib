@@ -26,27 +26,25 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/FileCounter")
 public class FileCounter extends HttpServlet {   	
   private static final long serialVersionUID = 1L;
-  private FibService fs = new FibService(); 
-
-  
-	
+  private FibService fs;
   int count;
   private FileMaj dao;
   
-  /*@Override
   public void init() throws ServletException {
+	  System.out.println("initialisation");
     dao = new FileMaj();
+    fs = new FibService();
     try {
 		  RemoteFibonacci remote = new Fibonacci(1099);
 		  LocateRegistry.createRegistry(1099);
-		  Naming.rebind("Remote", remote);
+		  Naming.rebind("remote", remote);
 		
 	} catch (Exception e) {
 		// TODO: handle exception
 		e.printStackTrace();
 	}
 	  //user input
-  }*/
+  }
 //    try {
 //      count = dao.getCount();
 //    } catch (Exception e) {
@@ -57,55 +55,67 @@ public class FileCounter extends HttpServlet {
 //  }
 
   @Override
-  protected void doGet(HttpServletRequest req,
-      HttpServletResponse response) throws ServletException, IOException {
-	  
-	  
-	  /*int maximumRe = Integer.parseInt(req.getParameter("jobNum"));
-	  int noRe = fs.add(maximumRe);
-	  String type = req.getParameter("Input");
-	  
+  protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+	  RemoteFibonacci remotefib = null;
 	  try {
-		  RemoteFibonacci remote = (RemoteFibonacci )Naming.lookup("rmi://localhost:1099/remote");//Instantiate the chat server
+		 remotefib= (RemoteFibonacci)Naming.lookup("rmi://localhost:1099/remote");//Instantiate the chat server
 		  //String fibRes = String.valueOf(remote.getFibRequest(Integer.valueOf(type)));
-			Naming.rebind("ChatServer-1.0", remote); //Bind it to the local RMIRegistry
+			//Naming.rebind("ChatServer-1.0", remote); //Bind it to the local RMIRegistry
 			System.out.println("************************************");
 			System.out.println("*          RMI Chat Server         *");
 			System.out.println("************************************");
 			System.out.println("Server ready!");
 	} catch (Exception e) {
 		// TODO: handle exception
+		System.out.println("rmi wrong");
 	}
-	  */
 	  
-	  fs = new FibService();
-	  
-	  
-    
+
     // Set the session valid for 5 secs
-    String rType = req.getParameter("request-type").toString();
+    String rType = (String) req.getSession().getAttribute("request-type");
     if(rType.equals("Add")){
+    	 // int maximumRe = Integer.parseInt(req.getParameter("jobNum"));
+    	  //int noRe = fs.add(maximumRe);
+    	 // String type = req.getParameter("Input");
+    	  
     	String jobNum = "";
-    	jobNum += fs.add(Integer.parseInt(req.getParameter("jobNum")));
+    	jobNum += fs.add(Integer.parseInt(req.getParameter("max")));
+    	fs.addResult(Integer.valueOf(jobNum),remotefib.getFibonacciSequence(Integer.parseInt(req.getParameter("max"))));// put jobNum and fib into table
+    	System.out.println("add "+jobNum);
     	//response.sendRedirect("FibJob.jsp");
     	//response.getOutputStream().print(jobNum);
-    	req.setAttribute("jobNum", jobNum);
-    	req.setAttribute("timer", 10);
-    	req.setAttribute("request-type", "Poll");
+    	req.getSession().setAttribute("jobNum", jobNum);
+    	//req.getSession().setAttribute("timer", 10);
     	req.getRequestDispatcher("FibJob.jsp").forward(req,response);
     }
     else if(rType.equals("Poll")){
-    	String jobNum = "";
-    	//response.getOutputStream().print(jobNum);
-    	jobNum += fs.add(Integer.parseInt(req.getParameter("jobNum")));
-    	response.sendRedirect("Result.jsp");
-    	if(fs.getResult(Integer.parseInt(jobNum)) != null)
+    	System.out.println("this is poll");
+    	String Results = "";
+    	try {
+    		Results += fs.getResult(Integer.parseInt(req.getParameter("jobnum")));
+			System.out.println(Results+":"+req.getParameter("jobnum"));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+    	if(!Results.equals("")){
+        	//response.sendRedirect("Result.jsp");
+//        	req.getSession().setAttribute("Results", Results);
+//        	req.getRequestDispatcher("Results.jsp").forward(req,response);
+    		response.sendRedirect("Result.jsp?result="+Results);
+    	} else {
+    		req.getRequestDispatcher("FibJob.jsp").forward(req,response);
+    	}
+    	
+    	
+    	/*if(fs.getResult(Integer.parseInt(Results)) != null)
     	{
     		//send to client
+    		
     	}
     	else{
     		//response.sendRequest("Re
-    	}
+    	}*/
     }
 
     //out.flush();
@@ -136,6 +146,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp)
   
   public void destroy() {
     super.destroy();
+    
     try {
       dao.save(count);
     } catch (Exception e) {

@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 
 public interface RemoteFibonacci extends Remote{
 	
-	public String setFibonacciSequence(int max) throws RemoteException;
+	public String getFibonacciSequence(int max) throws RemoteException;
 
 	
 }

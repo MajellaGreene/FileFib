@@ -8,12 +8,11 @@
 </head>
 <body>
 
-<form action="FileCounter" method="get">			
-			 Fibonacci Sequence Length ---
-			 <input type="Hidden" name="request-type" value="Add">
-			 Enter Number between 1 - 100 : <br>
-			<input type="text" name="jobNum" size="20px">
-			<input type="submit" value="submit">						
+<form action="Home.jsp" method="get">			
+			Result - 
+			 <br>
+			 <%=request.getParameter("result") %>
+			<input type="submit" value="Back to start">						
 		</form>	
 </body>
 </html>
