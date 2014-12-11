@@ -62,7 +62,7 @@ public class FileCounter extends HttpServlet {
 		  //String fibRes = String.valueOf(remote.getFibRequest(Integer.valueOf(type)));
 			//Naming.rebind("ChatServer-1.0", remote); //Bind it to the local RMIRegistry
 			System.out.println("************************************");
-			System.out.println("*          RMI Chat Server         *");
+			System.out.println("*          RMI Fibonacci Server         *");
 			System.out.println("************************************");
 			System.out.println("Server ready!");
 	} catch (Exception e) {
